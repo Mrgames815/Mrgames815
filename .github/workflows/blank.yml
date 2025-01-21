@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# Step 1: Define your variables
+REPO_NAME="RobloxScriptsRepo"  # Your GitHub repository name
+GITHUB_URL="https://github.com/your-username/$REPO_NAME.git"  # Replace with your GitHub username
+LOCAL_DIR="$HOME/RobloxScripts"  # Local directory for the repo
+SCRIPT_NAME="colorChangeScript.lua"  # Roblox script name
+SCRIPT_PATH="$LOCAL_DIR/$SCRIPT_NAME"  # Path to the script file
+
+# Step 2: Create the local directory if it doesn't exist and move to it
+mkdir -p "$LOCAL_DIR"
+cd "$LOCAL_DIR" || exit
+
+# Step 3: Create the Roblox Lua script and write it directly into the file
+echo "-- Roblox script that changes the color of a part when touched
+local part = script.Parent  -- Get the part this script is attached to
+
+local function onTouch(hit)
+    if hit and hit:IsA('BasePart') then
+        part.BrickColor = BrickColor.Random()  -- Change part color to a random color
+    end
+end
+
+part.Touched:Connect(onTouch)" > "$SCRIPT_NAME"
+
+# Step 4: Initialize the Git repository
+git init
+
+# Step 5: Add the script to the repository
+git add "$SCRIPT_NAME"
+
+# Step 6: Commit the script with a message
+git commit -m "Initial commit: Add Roblox script for color change on touch"
+
+# Step 7: Link the local repository to GitHub
+git remote add origin "$GITHUB_URL"
+
+# Step 8: Push the code to GitHub (rename branch to 'main' if needed)
+git branch -M main  # Rename branch to 'main' (if it's not already)
+git push -u origin main  # Push to GitHub
+
+# Step 9: Confirm success
+echo "Successfully uploaded your Roblox script to GitHub!"
