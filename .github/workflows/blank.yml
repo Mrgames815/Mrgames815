@@ -1,7 +1,6 @@
-#!/bin/bash
+,#!/bin/bash
 
 # Step 1: Define your variables
-REPO_NAME="RobloxScriptsRepo"  # Your GitHub repository name
 GITHUB_URL="https://github.com/your-username/$REPO_NAME.git"  # Replace with your GitHub username
 LOCAL_DIR="$HOME/RobloxScripts"  # Local directory for the repo
 SCRIPT_NAME="colorChangeScript.lua"  # Roblox script name
